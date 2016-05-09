@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+head
+  include head.jade
+body.capped-layout
+  script(type="text/javascript",src="js/ace.js")
+  header.capped-layout_cap.app-banner
+    span.app-banner_title IBM Cloud Data Services // Dev
+    
+  div.capped-layout_body.bookend-layout
+    nav.bookend-layout_bookend.theme_light.bg_white
+      include nav.jade
+      
+    div.bookend-layout_body.theme_dark
+      section.layout_section.theme_light
+        h1.type_heading Edit Schema
+      
+      section.layout_section
+        form(id="doc",onsubmit="return submitSchema();")
+          div.form_standard
+            div#error
+            
+            div.form_field
+              div#editor #{JSON.stringify(schema,null,"  ")}
+                    
+            button#schemasubmitbtn.button_primary(type="submit") Submit
+            
+            script(type="text/javascript").
+              var editor = ace.edit("editor");
+//              editor.setTheme("ace/theme/monokai");
+              editor.getSession().setMode("ace/mode/javascript");

@@ -2,58 +2,33 @@ doctype html
 html(lang="en")
 head
   include head.jade
-body
-  include nav.jade
-
-  div.container
-      
-    h2 Create new provisional document
-    div
-      form(id="provisional",onsubmit="return submitProvisional();")
-        div.form-group
-          input.form-control(id="url",type="url",name="url",value="",placeholder="Enter URL here")
-        div.form-group#error
-        button.btn.btn-default(type="submit") Submit
-      
-    hr 
+body.capped-layout
+  header.capped-layout_cap.app-banner
+    span.app-banner_title IBM Cloud Data Services // Dev
     
-    h2 Create new document (all fields)
-    div
-      a.btn.btn-default(href="/doc") Create New Document
+  div.capped-layout_body.bookend-layout
+    nav.bookend-layout_bookend.theme_light.bg_white
+      include nav.jade
       
-    h2 Provisional documents
-    ul
-      - var status = "";
-      - for(var i in docs.rows) {
-        - var d = docs.rows[i];
-        - if (docs.rows[i].key == "Provisional") { 
-          li
-            a(href="/doc/#{d.id}") 
-              b #{d.value.name}
-            br 
-            span(class="muted") #{d.value.url}
-          - }
-        - }
+    div.bookend-layout_body.theme_dark
+      section.layout_section
+        h1.type_heading
+          mark.type_mark Welcome to the DevCenter Uploader
+          
+        hr
         
-    h2 Live documents
-    ul
-      - var status = "";
-      - for(var i in docs.rows) {
-        - var d = docs.rows[i];
-        - if (docs.rows[i].key == "Live") { 
-          li
-            a(href="/doc/#{d.id}") #{d.value.name}
-           - }
-        - }      
-
-    h2 Deleted documents
-    ul
-      - var status = "";
-      - for(var i in docs.rows) {
-        - var d = docs.rows[i];
-        - if (d.key == "Deleted") { 
-          li
-            a(href="/doc/#{d.id}") #{d.value.name}
-          - }
-        - }      
-
+        p.type_copy Node.js Web App to be used to manage the database of articles that feed the CDS "How-tos" section, Bluemix contextual search amongst others. It provides the following functionality:
+        
+        ul.list_unordered.about_list
+          li a NoSQL database of article URLS and their meta data
+          li a search API to allow third party systems to search the database
+          li a Content Management System web UI to allow administrators to
+          li * add/edit/delete content
+          li * edit the schema
+          li an API that allows a third party system to suggest URLs to be added to the database
+          li an API used to allow Slack 'slash command' to be connect to suggest URLs to be added to the database
+               
+          p.type_copy Visit the 
+            a.type_link(href="https://github.com/ibm-cds-labs/devcenter",target="_blank") DevCenter 
+            | &nbsp;GitHub repository for more information.
+            

@@ -1,0 +1,79 @@
+
+.muted {
+  color: #aaa;
+  font-style: italic;
+}
+
+#editor {
+  height: 60vh;
+  width: 100%;
+}
+
+.theme_dark .button_primary.disabled,
+.theme_dark .button_primary[disabled] {
+    background-color: #41d6c3;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.theme_dark .button_secondary.disabled,
+.theme_dark .button_secondary[disabled] {
+    background-color: inherit;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.tabbed-panel_tab.ui-state-active {
+  background-color: #f9f9fb;
+  border-top: 2px solid #008571;
+  opacity: initial;
+}
+
+.tabbed-panel_panel.bg_light-tint {
+  background-color: #f9f9fb;
+}
+
+.ui-tabs-anchor:focus {
+  outline: none;
+}
+
+.type_link {
+  cursor: pointer;	
+}
+
+.input_text.disabled,
+.input_text[disabled] {
+  background-color: #d3d9dd;
+}
+
+li.active {
+    background-color: #f0f2f4;
+    box-shadow: 8px 0 0 0 #5aaafa inset;
+}
+
+.bootstrap-tagsinput {
+	font-size: 14px;
+	font-size: .875rem;
+	border: 1px solid #d3d9dd;
+  border-radius: 0px;
+  box-shadow: initial;
+	color: black;
+	display: block;
+	width: 100%;
+	padding: 6px 0 6px 12px;
+	padding: .375rem 0 .375rem .75rem;
+}
+
+.bootstrap-tagsinput .tag {
+  background-color: #41d6c3;
+  border-radius: 2px;
+  color: #ffffff;
+  margin-right: 2px;
+  padding: 5px 10px;
+}
+
+.input_text,
+.input_select,
+.bootstrap-tagsinput {
+  max-width: 60%;
+}
