@@ -1,0 +1,101 @@
+    <!--      
+    form(id="doc",onsubmit="return submitDoc();")
+      input(type="hidden",name="_id",value="#{doc._id}")
+      input(type="hidden",name="_rev",value="#{doc._rev}")
+      input(type="hidden",name="created_at",value="#{doc.created_at}")
+      input(type="hidden",name="full_name",value="#{doc.full_name}")
+      
+      
+      div.form-group
+        label(for="url") URL
+        - if(doc.url.length > 0) {
+          input.form-control(id="_url",type="url",name="_url",value="#{doc.url}",disabled)
+          input(type="hidden",name="url",value="#{doc.url}")
+        - } else {
+          input.form-control(id="url",type="url",name="url")
+        - }
+        
+      div.form-group
+        label(for="status") Status
+        select.form-control(name="status")
+          -var thelevels=["Provisional","Live","Deleted"];
+          -for(var i in thelevels){
+          -var val = (doc.status)?doc.status:"Live";
+          option(value="#{thelevels[i]}",selected=(val==thelevels[i])) #{thelevels[i]}
+          -}
+        
+        
+      div.form-group
+        label(for="name") Name
+        input.form-control(id="name",type="text",name="name",value="#{doc.name}")
+        
+      div.form-group
+        label(for="description") Description
+        textarea.form-control(id="description",name="description",rows="5") #{doc.description}
+        
+
+      div.form-group
+        label(for="languages") Languages
+        input.form-control(id="languages",type="text",name="languages",data-role="tagsinput",value="#{doc.languages.join(',')}")
+        span.help-block HTTP, Java, JavaScript, Objective-C, R, SQL, Python, Swift, PHP
+        
+      div.form-group
+        label(for="technologies") Technologies
+        input.form-control(id="technologies",type="text",name="technologies",data-role="tagsinput",value="#{doc.technologies.join(',')}")
+        span.help-block Cloudant, Cloudant Local, DataWorks, dashDB, MobileFirst
+                         
+                                                      
+      div.form-group
+        label(for="topic") Topics
+        input.form-control(id="topic",type="text",name="topic",data-role="tagsinput",value="#{doc.topic.join(',')}")        
+        span.help-block Analytics, Data Warehousing, Hybrid, IoT, Location, Migration, Mobile, NoSQL, Offline, SQL
+                                                                                                                                             
+      div.form-group
+        label(for="type") Type
+        select.form-control(name="type")
+          -var thetypes=["Article","Tutorial","Video"];
+          -for(var i in thetypes){
+          option(value="#{thetypes[i]}",selected=(doc.type==thetypes[i])) #{thetypes[i]}
+          -}
+          
+      div.form-group
+        label(for="level") Level
+        select.form-control(name="level")
+          -var thelevels=["Beginner","Intermediate","Advanced"];
+          -for(var i in thelevels){
+          option(value="#{thelevels[i]}",selected=(doc.level==thelevels[i])) #{thelevels[i]}
+          -}  
+          
+      div.form-group
+        label(for="imageurl") Image URL
+        input.form-control(id="imageurl",type="url",name="imageurl",value="#{doc.imageurl}")
+        
+      div.form-group
+        label(for="body") Body
+        textarea.form-control(id="body",name="body") #{doc.body}
+      
+      div.form-group
+        label(for="githuburl") GitHub URL
+        input.form-control(id="githuburl",type="url",name="githuburl",value="#{doc.githuburl}")        
+
+      div.form-group
+        label(for="videourl") Video URL
+        input.form-control(id="videourl",type="url",name="videourl",value="#{doc.videourl}")         
+
+      div.form-group
+        label(for="demourl") Demo URL
+        input.form-control(id="demourl",type="url",name="demourl",value="#{doc.demourl}")         
+
+      div.form-group
+        label(for="documentationurl") Documentation URL
+        input.form-control(id="documentationurl",type="url",name="documentationurl",value="#{doc.documentationurl}")         
+
+      div.form-group
+        label(for="otherurl") Other URL
+        input.form-control(id="otherurl",type="url",name="otherurl",value="#{doc.otherurl}")         
+             
+      div.form-group
+        label(for="related") Related
+        input.form-control(id="related",name="related",data-role="tagsinput",value="#{doc.related.join(',')}")  
+ 
+      -->   
