@@ -2,24 +2,34 @@ doctype html
 html(lang="en")
 head
   include head.jade
-body
-  include nav.jade
-
-  div.container
-    div.header
-      h3.text-muted
+body.capped-layout
+  header.capped-layout_cap.app-banner
+    span.app-banner_title IBM Cloud Data Services // Dev
+    
+  div.capped-layout_body.bookend-layout
+    nav.bookend-layout_bookend.theme_light.bg_white
+      include nav.jade
       
-    div.jumbotron
-      h1 Dev Center
-      p.lead Upload new articles to CDS Dev Center
-      p.clearfix 
-      
-      div#error
-      
-      form(method="post",onsubmit="return checkLogin();")
-        div.form-group
-          label(for="password") Password
-          input.form-control(id="password",type="password",name="password")
-        button.btn.btn-default(type="submit") Submit
-
-
+    div.bookend-layout_body.theme_dark
+      section.layout_section
+        h1.type_heading
+          mark.type_mark Bluemix Content Microservice
+    
+        p.type_copy Upload new content assets to be discovered in the Bluemix Community and product pages.
+        
+        div#error
+        
+        form(method="post",onsubmit="return checkLogin();")
+          div.form_standard
+            div.form_field
+              label.form_label(for="password") Password
+              input.input_text(id="password",type="password",name="password")
+            button#loginbtn.button_primary(type="submit") Submit
+            
+        script(type="text/javascript").
+          $( document ).ready(function() {
+            // jump to a url ending in a slash e.g. /api/v1/content/ not /api/v1/content
+            if(!window.location.href.match(/\/$/)) {
+              window.location.href=window.location.href+"/";
+            }
+          });

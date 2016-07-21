@@ -1,8 +1,29 @@
-if session && session.loggedin
-  nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
-    div.container
-      div.navbar-header.hidden-xs.hidden-sm
-        a.navbar-brand(href="/") DevCenter Uploader
-        
-      a.btn.btn-default.navbar-btn(href="/menu",type="button") Menu
-      a.btn.btn-default.navbar-btn(href="/logout",type="button") Logout
+ul.tree-nav
+ li.tree-nav_item
+  a.tree-nav_link(href=".") DevCenter Uploader
+  ul.tree-nav
+   if session && session.loggedin
+    li.tree-nav_item(class=page == "add" ? "active" : "")
+      a.tree-nav_link(href="/doc") Add
+    li.tree-nav_item(class=page == "provisional" ? "active" : "")
+      a.tree-nav_link(href="/view?status=provisional") Provisional
+    li.tree-nav_item(class=page == "live" ? "active" : "")
+      a.tree-nav_link(href="/view?status=live") Live
+    li.tree-nav_item(class=page == "deleted" ? "active" : "")
+      a.tree-nav_link(href="/view?status=deleted") Deleted
+    //-li.tree-nav_item(class=page == "schema" ? "active" : "")
+    //-  a.tree-nav_link(href="/schema") Schema
+   else
+    li.tree-nav_item
+      a.tree-nav_link.disabled Add
+    li.tree-nav_item
+      a.tree-nav_link.disabled Provisional
+    li.tree-nav_item
+      a.tree-nav_link.disabled Live
+    li.tree-nav_item
+      a.tree-nav_link.disabled Deleted
+    //-li.tree-nav_item
+    //-  a.tree-nav_link.disabled Schema
+  if session && session.loggedin
+    li.tree-nav_item
+      a.tree-nav_link(href="logout") Logout
