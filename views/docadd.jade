@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+head
+  include head.jade
+body.capped-layout
+  header.capped-layout_cap.app-banner
+    span.app-banner_title IBM Cloud Data Services // Dev
+    
+  div.capped-layout_body.bookend-layout
+    nav.bookend-layout_bookend.theme_light.bg_white
+      include nav.jade
+      
+    div.bookend-layout_body.theme_dark
+      section.layout_section.theme_light
+        h1.type_heading Add New Documents
+      
+      section.layout_section
+        div.tabbed-panel
+          ul.tabbed-panel_tab-group
+            li.tabbed-panel_tab
+              a(href="#uploadprovdoc") Create provisional document
+            li.tabbed-panel_tab
+              a(href="#createnewdoc") Create new document
+              
+          div#uploadprovdoc.tabbed-panel_panel.bg_light-tint
+            form(id="provisional",onsubmit="return submitProvisional();")
+              div.form_standard
+                div.form_field
+                  label.form_label(for="url") URL
+                  input.input_text(id="url",type="url",name="url",value="",placeholder="Enter URL here")
+                div#error
+                button#provsubmitbtn.button_primary(type="submit") Submit
+                
+          div#createnewdoc.tabbed-panel_panel.bg_light-tint
+            include doc.jade

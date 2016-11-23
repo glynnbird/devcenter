@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+head
+  include head.jade
+body.capped-layout
+  header.capped-layout_cap.app-banner
+    span.app-banner_title IBM Cloud Data Services // Dev
+    
+  div.capped-layout_body.bookend-layout
+    nav.bookend-layout_bookend.theme_light.bg_white
+      include nav.jade
+      
+    div.bookend-layout_body.theme_dark
+      section.layout_section.theme_light
+        if (key == "provisional")
+         h1.type_heading Provisional Documents
+        else if (key == "deleted")
+         h1.type_heading Deleted Documents
+        else if (key == "live")
+         h1.type_heading Live Documents
+        else
+         h1.type_heading All Documents
+      
+      section.layout_section
+        ul.list_unordered
+          - var status = "";
+          - if (docs && docs.rows) {
+            - for (var i in docs.rows) {
+              - var d = docs.rows[i];
+              - if (!key || key.length == 0) {
+                li
+                  span.type_copy [#{d.key}] 
+                  a.type_link(href="doc?id=#{d.id}") #{d.value.name}
+                  - if (d.key.toLowerCase() == "provisional") {
+                    br
+                    span.muted #{d.value.url}
+                  - }
+              - }
+              - else if (d.key.toLowerCase() == key.toLowerCase()) {
+                li
+                  a.type_link(href="doc?id=#{d.id}") #{d.value.name}
+                  - if (key == "provisional") {
+                    br
+                    span.muted #{d.value.url}
+                  - }
+                - }
+              - }
+            - }

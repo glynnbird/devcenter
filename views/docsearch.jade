@@ -1,0 +1,75 @@
+doctype html
+html(lang="en")
+head
+  include head.jade
+body.capped-layout
+  header.capped-layout_cap.app-banner
+    span.app-banner_title IBM Cloud Data Services // Dev
+    
+  div.capped-layout_body.bookend-layout
+    nav.bookend-layout_bookend.theme_light.bg_white
+      include nav.jade
+      
+    div.bookend-layout_body.theme_dark
+      section.layout_section.theme_light
+         h1.type_heading Search Documents
+         form(id="doc",onsubmit="return searchDocs();")
+           div.form_standard
+             div.form_field
+               div.form_addon-group
+                 input.input_text.input_text-wide(type="text",id="searchinput",name="q",placeholder="Enter free text and/or faceted search (e.g., Cloudant AND status:\"Live\")")
+                 span.input_text-clear(id="searchclear",onclick="searchDocs('')") &times;
+                 button#searchbutton.button_primary.search_button(type="submit") Search
+      
+      section.layout_section
+        div#searcherror
+        div.grid_row.eight-column
+          div.grid_column.two
+            h3.type_subhead.type_mark Filter
+            each f, n in schema["_arrayofstrings"]
+              div.searchfacet
+                h4.type_subhead #{f}
+                ul.tag-list(style="display:none")
+                  each j, i in schema[f].values
+                    li.tag-list_tag
+                      a.type_link(data-search-filter="#{f}:#{j}", id="#{n}-#{i}", onclick="filterSearch(#{n}, #{i})") #{j}
+
+          div.grid_column.six
+            h3.type_subhead.type_mark Documents
+            p.type_copy.search_count
+            button#deletebutton.button_primary Delete
+            div.table_container
+              table.table_basic
+                thead
+                  tr
+                    th &nbsp;
+                    th Status
+                    th Date
+                    th Name
+                    th URL
+                tbody
+            button#morebutton.button_primary More
+    
+      script(type="text/javascript").
+          $(document).ready(function() {
+            $('div.searchfacet > h4.type_subhead')
+              .hover(function() {
+                if (!$(this).hasClass('active')) {
+                  $('div.searchfacet > h4.type_subhead.active')
+                    .removeClass('active')
+                    .siblings('ul.tag-list')
+                    .hide(500);
+                  $(this)
+                    .addClass('active')
+                    .siblings('ul.tag-list').show(750);
+                }
+              });
+            $('#morebutton').click(function() {
+              searchDocs(null, $(this).data('bookmark'));
+            });
+            $('#deletebutton').click(function() {
+              deleteDocs();
+            });
+            $('#searchinput').val('');
+            searchDocs('');
+          });
